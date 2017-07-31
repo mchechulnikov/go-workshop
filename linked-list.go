@@ -64,7 +64,7 @@ func (l *LinkedList) Get(index int) (*Element, error) {
 		return nil, fmt.Errorf("Couldn't get element from empty linked list")
 	}
 
-	if l.Length < index+1 {
+	if l.Length < index {
 		return nil, fmt.Errorf("Index %d out of range: max length of linked list equal %d", index, l.Length)
 	}
 
