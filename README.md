@@ -1,1 +1,1 @@
-# go-practicum
+Just train my skills on Go
