@@ -28,6 +28,19 @@ func TestLinkedList_Get(t *testing.T) {
 			t.Fatalf("Expected %d, but received %d", 45, element.GetValue())
 		}
 	})
+
+	t.Run("not empty list, valid index — valid element", func(t *testing.T) {
+		list := New()
+		list.Add(42)
+		list.Add(43)
+		list.Add(44)
+		list.Add(45)
+		list.Add(46)
+		_, err := list.Get(5)
+		if err == nil {
+			t.Fatalf("Error eq nil")
+		}
+	})
 }
 
 func TestLinkedList_Add(t *testing.T) {
