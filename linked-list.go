@@ -10,6 +10,7 @@ func New() *LinkedList {
 
 type LinkedList struct {
 	First  *Element
+	Last   *Element
 	Length int
 }
 
@@ -17,18 +18,14 @@ func (l *LinkedList) Add(value interface{}) {
 	element := l.First
 	if element == nil {
 		l.First = &Element{value: value}
+		l.Last = l.First
 		l.Length++
 		return
 	}
 
-	for {
-		if element.next == nil {
-			element.next = &Element{value: value}
-			l.Length++
-			return
-		}
-		element = element.next
-	}
+	l.Last.next = &Element{value: value}
+	l.Last = l.Last.next
+	l.Length++
 }
 
 func (l *LinkedList) AddByIndex(value interface{}, index int) error {
@@ -46,6 +43,7 @@ func (l *LinkedList) AddByIndex(value interface{}, index int) error {
 			} else if element == nil {
 				element = &Element{value: value}
 				prevElement.next = element
+				l.Last = element
 			} else {
 				prevElement.next = &Element{value: value, next: element}
 			}
@@ -99,6 +97,7 @@ func (l *LinkedList) Delete(index int) error {
 				l.First = l.First.next
 			} else if element == nil {
 				prevElement.next = nil
+				l.Last = prevElement
 			} else {
 				prevElement.next = element.next
 			}
