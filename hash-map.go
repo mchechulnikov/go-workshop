@@ -51,6 +51,9 @@ func (m *HashMap) Add(key string, value interface{}) error {
 
 func (m *HashMap) Delete(key string) error {
 	bucketIndex := m.calcIndex(key)
+	if m.support[bucketIndex] == nil {
+		return fmt.Errorf("No value presented for key '%s'", key)
+	}
 	bucketElement := m.support[bucketIndex].First
 	index := 0
 	for {
