@@ -6,7 +6,7 @@ import (
 
 func TestLinkedList_Get(t *testing.T) {
 	t.Run("empty list — error", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		_, err := list.Get(0)
 		if err == nil {
 			t.Fatalf("Error eq nil")
@@ -14,7 +14,7 @@ func TestLinkedList_Get(t *testing.T) {
 	})
 
 	t.Run("not empty list, valid index — valid element", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		list.Add(43)
 		list.Add(44)
@@ -30,7 +30,7 @@ func TestLinkedList_Get(t *testing.T) {
 	})
 
 	t.Run("not empty list, valid index — valid element", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		list.Add(43)
 		list.Add(44)
@@ -45,7 +45,7 @@ func TestLinkedList_Get(t *testing.T) {
 
 func TestLinkedList_Add(t *testing.T) {
 	t.Run("empty list — success", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		if list.Length != 1 {
 			t.Fatalf("Invalid length")
@@ -56,7 +56,7 @@ func TestLinkedList_Add(t *testing.T) {
 	})
 
 	t.Run("not empty list — success", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		list.Add(43)
 		list.Add(44)
@@ -83,7 +83,7 @@ func TestLinkedList_Add(t *testing.T) {
 
 func TestLinkedList_AddByIndex(t *testing.T) {
 	t.Run("empty list, valid index — success", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		err := list.AddByIndex(42, 0)
 		if err != nil {
 			t.Fatalf("Error not eq nil")
@@ -97,7 +97,7 @@ func TestLinkedList_AddByIndex(t *testing.T) {
 	})
 
 	t.Run("empty list, invalid index — error", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		err := list.AddByIndex(42, 1)
 		if err == nil {
 			t.Fatalf("Error eq nil")
@@ -105,7 +105,7 @@ func TestLinkedList_AddByIndex(t *testing.T) {
 	})
 
 	t.Run("not empty list, add to begin of the list — success", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		list.Add(43)
 		list.AddByIndex(41, 0)
@@ -130,7 +130,7 @@ func TestLinkedList_AddByIndex(t *testing.T) {
 	})
 
 	t.Run("not empty list, add between elements — success", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		list.Add(43)
 		list.Add(45)
@@ -161,7 +161,7 @@ func TestLinkedList_AddByIndex(t *testing.T) {
 	})
 
 	t.Run("not empty list, add to end of the list — success", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		list.Add(43)
 		list.AddByIndex(44, 2)
@@ -188,7 +188,7 @@ func TestLinkedList_AddByIndex(t *testing.T) {
 
 func TestLinkedList_Delete(t *testing.T) {
 	t.Run("empty list — error", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		err := list.Delete(0)
 		if err == nil {
 			t.Fatalf("Error eq nil")
@@ -196,7 +196,7 @@ func TestLinkedList_Delete(t *testing.T) {
 	})
 
 	t.Run("not empty list, delete from begin of the list — success", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		list.Add(43)
 		list.Delete(0)
@@ -211,7 +211,7 @@ func TestLinkedList_Delete(t *testing.T) {
 	})
 
 	t.Run("not empty list, delete between elements — success", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		list.Add(43)
 		list.Add(44)
@@ -232,7 +232,7 @@ func TestLinkedList_Delete(t *testing.T) {
 	})
 
 	t.Run("not empty list, delete from end of the list — success", func(t *testing.T) {
-		list := New()
+		list := NewLinkedList()
 		list.Add(42)
 		list.Add(43)
 		list.Add(44)

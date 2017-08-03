@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func New() *LinkedList {
+func NewLinkedList() *LinkedList {
 	return &LinkedList{}
 }
 
