@@ -1,4 +1,4 @@
-package main
+package hashMap
 
 import (
 	"testing"
@@ -6,33 +6,33 @@ import (
 
 func TestHashMap_Add(t *testing.T) {
 	t.Run("empty map, a few values added — success", func(t *testing.T) {
-		hashMap := NewHashMap()
-		err := hashMap.Add("foo", 42)
+		hmap := New()
+		err := hmap.Add("foo", 42)
 		if err != nil {
 			t.Fatalf("Error not eq nil")
 		}
-		if hashMap.Length() != 1 {
+		if hmap.Length() != 1 {
 			t.Fatalf("Invalid length")
 		}
-		err = hashMap.Add("bar", 43)
+		err = hmap.Add("bar", 43)
 		if err != nil {
 			t.Fatalf("Error not eq nil")
 		}
-		if hashMap.Length() != 2 {
+		if hmap.Length() != 2 {
 			t.Fatalf("Invalid length")
 		}
 	})
 
 	t.Run("add already existing key — error", func(t *testing.T) {
-		hashMap := NewHashMap()
-		err := hashMap.Add("foo", 42)
+		hmap := New()
+		err := hmap.Add("foo", 42)
 		if err != nil {
 			t.Fatalf("Error not eq nil")
 		}
-		if hashMap.Length() != 1 {
+		if hmap.Length() != 1 {
 			t.Fatalf("Invalid length")
 		}
-		err = hashMap.Add("foo", 43)
+		err = hmap.Add("foo", 43)
 		if err == nil {
 			t.Fatalf("Error eq nil")
 		}
@@ -41,20 +41,20 @@ func TestHashMap_Add(t *testing.T) {
 
 func TestHashMap_Get(t *testing.T) {
 	t.Run("get not presented key — error", func(t *testing.T) {
-		hashMap := NewHashMap()
-		_, err := hashMap.Get("foo")
+		hmap := New()
+		_, err := hmap.Get("foo")
 		if err == nil {
 			t.Fatalf("Error eq nil")
 		}
 	})
 
 	t.Run("by existing key — success", func(t *testing.T) {
-		hashMap := NewHashMap()
-		err := hashMap.Add("foo", 42)
+		hmap := New()
+		err := hmap.Add("foo", 42)
 		if err != nil {
 			t.Fatalf("Error not eq nil")
 		}
-		value, err := hashMap.Get("foo")
+		value, err := hmap.Get("foo")
 		if err != nil {
 			t.Fatalf("Error not eq nil")
 		}
@@ -66,26 +66,26 @@ func TestHashMap_Get(t *testing.T) {
 
 func TestHashMap_Delete(t *testing.T) {
 	t.Run("delete key — success", func(t *testing.T) {
-		hashMap := NewHashMap()
-		hashMap.Add("foo", 42)
-		hashMap.Add("bar", 43)
-		hashMap.Add("buz", 44)
-		if hashMap.Length() != 3 {
-			t.Fatalf("Expected %d elements in hash map, but actual %d", 3, hashMap.Length())
+		hmap := New()
+		hmap.Add("foo", 42)
+		hmap.Add("bar", 43)
+		hmap.Add("buz", 44)
+		if hmap.Length() != 3 {
+			t.Fatalf("Expected %d elements in hash map, but actual %d", 3, hmap.Length())
 		}
 
-		err := hashMap.Delete("bar")
+		err := hmap.Delete("bar")
 		if err != nil {
 			t.Fatalf("Error not eq nil: %s", err.Error())
 		}
-		if hashMap.Length() != 2 {
-			t.Fatalf("Expected %d elements in hash map, but actual %d", 2, hashMap.Length())
+		if hmap.Length() != 2 {
+			t.Fatalf("Expected %d elements in hash map, but actual %d", 2, hmap.Length())
 		}
 	})
 
 	t.Run("delete not existing key — error", func(t *testing.T) {
-		hashMap := NewHashMap()
-		err := hashMap.Delete("foo")
+		hmap := New()
+		err := hmap.Delete("foo")
 		if err == nil {
 			t.Fatalf("Error eq nil")
 		}

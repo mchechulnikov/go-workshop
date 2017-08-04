@@ -1,16 +1,17 @@
-package main
+package hashMap
 
 import (
 	"fmt"
+	"go-workshop/linkedList"
 	"hash/fnv"
 )
 
-func NewHashMap() *HashMap {
-	return &HashMap{support: make([]*LinkedList, 10)}
+func New() *HashMap {
+	return &HashMap{support: make([]*linkedList.LinkedList, 10)}
 }
 
 type HashMap struct {
-	support []*LinkedList
+	support []*linkedList.LinkedList
 	length  int
 }
 
@@ -42,7 +43,7 @@ func (m *HashMap) Add(key string, value interface{}) error {
 	}
 	index := m.calcIndex(key)
 	if m.support[index] == nil {
-		m.support[index] = NewLinkedList()
+		m.support[index] = linkedList.New()
 	}
 	m.support[index].Add(&kvPair{key, value})
 	m.length++

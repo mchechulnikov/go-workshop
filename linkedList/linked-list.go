@@ -1,10 +1,10 @@
-package main
+package linkedList
 
 import (
 	"fmt"
 )
 
-func NewLinkedList() *LinkedList {
+func New() *LinkedList {
 	return &LinkedList{}
 }
 
