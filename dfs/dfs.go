@@ -28,7 +28,7 @@ func (n *Node) IsChildrenContains(value int) bool {
 	if n.value == value {
 		return true
 	}
-	if n.children == nil && len(n.children) <= 0 {
+	if n.children == nil || len(n.children) <= 0 {
 		return false
 	}
 
