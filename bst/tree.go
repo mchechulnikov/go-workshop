@@ -20,11 +20,5 @@ func (t *Tree) Add(value int) bool {
 }
 
 func (t *Tree) Remove(value int) bool {
-	node, isFounded := t.root.searchNode(value)
-	if isFounded {
-		node.addChild(value) // todo
-		return true
-	} else {
-		return false
-	}
+	return t.root.removeChild(value, t.root)
 }
