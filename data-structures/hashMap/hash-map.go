@@ -2,7 +2,7 @@ package hashMap
 
 import (
 	"fmt"
-	"go-workshop/linkedList"
+	"go-workshop/data-structures/linkedListtures/linkedList"
 	"hash/fnv"
 )
 
