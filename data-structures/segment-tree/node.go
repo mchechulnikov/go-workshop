@@ -1,4 +1,4 @@
-package thirteenth
+package segment_tree
 
 type node struct {
 	sum int
