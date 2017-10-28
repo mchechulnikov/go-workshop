@@ -256,3 +256,36 @@ func TestLinkedList_Delete(t *testing.T) {
 		}
 	})
 }
+
+func TestLinkedList_HasCycle(t *testing.T) {
+	t.Run("empty list — no cycles", func(t *testing.T) {
+		list := New()
+		if list.HasCycle() {
+			t.Fatalf("Expected cycle absense")
+		}
+	})
+
+	t.Run("not empty list — cycle", func(t *testing.T) {
+		list := New()
+		list.Add(42)
+		list.Add(43)
+		list.Add(44)
+		list.Add(45)
+		list.Add(46)
+		list.Add(47)
+		list.Add(48)
+		list.Add(49)
+		first, err := list.Get(0)
+		if err != nil {
+			t.Fatalf(err.Error())
+		}
+		last, err := list.Get(6)
+		if err != nil {
+			t.Fatalf(err.Error())
+		}
+		last.next = first
+		if !list.HasCycle() {
+			t.Fatalf("Expected cycle")
+		}
+	})
+}

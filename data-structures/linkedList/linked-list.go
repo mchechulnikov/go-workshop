@@ -110,6 +110,24 @@ func (l *LinkedList) Delete(index int) error {
 	}
 }
 
+func (l* LinkedList) HasCycle() bool {
+	if l.First == nil {
+		return false
+	}
+
+	// Floyd's algorithm
+	tortoise := l.First
+	hare := l.First
+	for tortoise == hare {
+		if hare == nil || hare.next == nil {
+			return false
+		}
+		tortoise = tortoise.next
+		hare = hare.next.next
+	}
+	return true
+}
+
 type Element struct {
 	value interface{}
 	next  *Element
