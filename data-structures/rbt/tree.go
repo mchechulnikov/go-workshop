@@ -60,31 +60,39 @@ func (t *Tree) Contains(value int) bool {
 
 func (t *Tree) balancingAfterAdding(node *node) {
 	for {
-		if node.parent.isRed {
+		if node.isRed && node.parent.isRed {
 			uncle := node.getUncle()
-			if uncle.isRed {
+			if uncle != nil && uncle.isRed {
+				// recolor
 				node.parent.isRed = false
 				uncle.isRed = false
-				if node.parent.parent == t.root {
-					return
-				} else {
+				if node.parent.parent != t.root {
 					node.parent.parent.isRed = true
 				}
-				node = node.parent
 			} else {
-				t.pivot(node.parent)
+				t.rotate(node.parent)
 			}
+		}
+		node = node.parent
+		if node == nil || node == t.root {
+			return
 		}
 	}
 }
 
-func (t *Tree) pivot(node *node) {
+func (t *Tree) rotate(node *node) {
 	parent, grandParent := node.parent, node.parent.parent
-	if grandParent.left == parent {
-		grandParent.left = node
-	} else {
-		grandParent.right = node
+	if parent == t.root {
+		t.root = node
 	}
+	if grandParent != nil {
+		if grandParent.left == parent {
+			grandParent.left = node
+		} else {
+			grandParent.right = node
+		}
+	}
+
 	if parent.left == node {
 		parent.left = node.right
 		node.right = parent
@@ -92,6 +100,8 @@ func (t *Tree) pivot(node *node) {
 		parent.right = node.left
 		node.left = parent
 	}
+	node.parent = grandParent
+	parent.parent = node
 	parent.isRed = true
 	node.isRed = false
 }
