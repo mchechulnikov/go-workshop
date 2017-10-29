@@ -10,21 +10,21 @@ func (t *Tree) Add(value int) bool {
 		return true
 	}
 
-	var node *node
+	var currentNode *node
 	pointer := t.root
 	for {
 		if pointer.value < value {
 			if pointer.right == nil {
-				node = &node {value: value, isRed: true, parent: pointer}
-				pointer.right = node
+				currentNode = &node {value: value, isRed: true, parent: pointer}
+				pointer.right = currentNode
 				break
 			} else {
 				pointer = pointer.right
 			}
 		} else if pointer.value > value {
 			if pointer.left == nil {
-				node = &node {value: value, isRed: true, parent: pointer}
-				pointer.left = node
+				currentNode = &node {value: value, isRed: true, parent: pointer}
+				pointer.left = currentNode
 				break
 			} else {
 				pointer = pointer.left
@@ -33,7 +33,7 @@ func (t *Tree) Add(value int) bool {
 			return false
 		}
 	}
-	t.balancingAfterAdding(node)
+	t.balancingAfterAdding(currentNode)
 	return true
 }
 
@@ -42,8 +42,20 @@ func (t *Tree) Remove(value int) bool {
 	return false
 }
 
-func (t *Tree) IsBalanced() bool {
-	// todo
+func (t *Tree) Contains(value int) bool {
+	currentNode := t.root
+	for {
+		if currentNode == nil {
+			return false
+		}
+		if currentNode.value > value {
+			currentNode = currentNode.left
+		} else if currentNode.value < value {
+			currentNode = currentNode.right
+		} else {
+			return true
+		}
+	}
 }
 
 func (t *Tree) balancingAfterAdding(node *node) {
