@@ -10,7 +10,7 @@
 * [Naive binary search tree (BST)](data-structures/bst)
 * [Red-black tree](data-structures/rbt)
 * Treap (TODO)
-* [Segment tree (for RSQ, RMQ, ect)](data-structures/segment-tree)
+* [Segment tree (for RSQ, RMQ, ect; not finished yet!)](data-structures/segment-tree)
 
 # [Tasks](tasks)
 Number of different logical exercises
